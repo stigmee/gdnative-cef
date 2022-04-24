@@ -96,6 +96,13 @@ int BrowserView::init(godot::String const& url, CefBrowserSettings const& settin
                           << get_name().utf8().get_data()
                           << " succeeded");
         m_browser->GetHost()->WasResized();
+
+        // Load extension
+        //ClientRequestContextHandler* toto = new ClientRequestContextHandler();
+        m_browser->GetHost()->GetRequestContext()->LoadExtension(
+"/home/qq/workspace_stigmee/packages/stigmark/ext/chrome-edge-brave/", nullptr,
+new ClientRequestContextHandler()
+);
     }
 
     return m_id;

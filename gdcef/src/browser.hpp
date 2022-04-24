@@ -51,6 +51,8 @@
 #  include "GlobalConstants.hpp"
 
 // Chromium Embedded Framework
+#  include "cef_request_context_handler.h"
+#  include "cef_extension_handler.h"
 #  include "cef_render_handler.h"
 #  include "cef_client.h"
 #  include "cef_app.h"
@@ -58,6 +60,45 @@
 
 #  include <iostream>
 #  include <array>
+
+// ****************************************************************************
+//! \brief
+// ****************************************************************************
+class ClientRequestContextHandler : //public CefRequestContextHandler,
+                                    public CefExtensionHandler
+{
+public:
+
+    ClientRequestContextHandler() {}
+
+/*private: // CefRequestContextHandler interfaces
+
+    virtual void OnRequestContextInitialized(CefRefPtr<CefRequestContext> request_context) override
+    {
+        CEF_REQUIRE_UI_THREAD();
+        request_context->LoadExtension("/home/qq/workspace_stigmee/packages/stigmark/ext/chrome-edge-brave/", nullptr, this);
+    }
+*/
+private: // CefExtensionHandler interfaces
+
+    virtual void OnExtensionLoaded(CefRefPtr<CefExtension> extension) override
+    {
+        CEF_REQUIRE_UI_THREAD();
+        std::cout << "OnExtensionLoadeddddd :)" << std::endl;
+        //MainContext::Get()->GetRootWindowManager()->AddExtension(extension);
+    }
+
+    virtual void OnExtensionLoadFailed(cef_errorcode_t result) override
+    {
+        CEF_REQUIRE_UI_THREAD();
+        std::cout << "OnExtensionLoadFailed" << std::endl;
+    }
+
+private:
+
+    IMPLEMENT_REFCOUNTING(ClientRequestContextHandler);
+    DISALLOW_COPY_AND_ASSIGN(ClientRequestContextHandler);
+};
 
 // ****************************************************************************
 //! \brief Class wrapping the CefBrowser class and export methods for Godot
