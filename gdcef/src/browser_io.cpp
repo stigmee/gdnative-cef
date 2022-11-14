@@ -148,7 +148,7 @@ void GDBrowserView::mouseMove(int x, int y)
 }
 
 //------------------------------------------------------------------------------
-void GDBrowserView::mouseWheel(const int wDelta)
+void GDBrowserView::mouseWheelVertical(const int wDelta)
 {
     if (m_browser == nullptr)
         return ;
@@ -157,7 +157,20 @@ void GDBrowserView::mouseWheel(const int wDelta)
     evt.x = m_mouse_x;
     evt.y = m_mouse_y;
 
-    m_browser->GetHost()->SendMouseWheelEvent(evt, wDelta * 10, wDelta * 10);
+    m_browser->GetHost()->SendMouseWheelEvent(evt, 0, wDelta * 10);
+}
+
+//------------------------------------------------------------------------------
+void GDBrowserView::mouseWheelHorizontal(const int wDelta)
+{
+    if (m_browser == nullptr)
+        return ;
+
+    CefMouseEvent evt;
+    evt.x = m_mouse_x;
+    evt.y = m_mouse_y;
+
+    m_browser->GetHost()->SendMouseWheelEvent(evt, wDelta * 10, 0);
 }
 
 //------------------------------------------------------------------------------
