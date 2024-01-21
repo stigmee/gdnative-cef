@@ -1,5 +1,8 @@
 # Chromium Embedded Framework as Godot native module
 
+⚠️ **Note: this module is no longer maintained since the main project has been canceled.**
+**Better to use https://github.com/Lecrapouille/gdcef and/or search for "gdcef" in the Godot asset lib!** ⚠️
+
 This repository contains the Godot native module (GDNative) wrapping [Chromium
 Embedded Framework](https://bitbucket.org/chromiumembedded/cef/wiki/Home) (CEF),
 that we have named `gdcef` for our application
